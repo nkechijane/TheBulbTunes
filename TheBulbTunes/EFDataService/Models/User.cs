@@ -11,7 +11,7 @@ namespace TheBulbTunes.EFDataService.Models
         class User
     {
         [Required]
-        public Guid userId { get; set; }
+        public Guid UserId { get; set; }
 
         [Required, MaxLength(50)]
         public string FirstName { get; set; }
@@ -21,5 +21,8 @@ namespace TheBulbTunes.EFDataService.Models
 
         [Required, MaxLength(150)]
         public string EmailAddress { get; set; }
+
+        //Favorites belonging to this user
+        public List<Favorite>FavoritesList { get; set; }
     }
 }
