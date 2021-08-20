@@ -16,41 +16,20 @@ namespace TheBulbTunes
             printer(availableUser);
 
             User newUser1 = new User(); //{ FirstName = "Babatope", LastName = "Ajayi", EmailAddress = "ajayi122@gmail.com" };
-            //User newUser2 = new User() { FirstName = "Olaniyi", LastName = "Ayomide", EmailAddress = "olaniyi@gmail.com" };
+            User newUser2 = new User(); // { FirstName = "Olaniyi", LastName = "Ayomide", EmailAddress = "olaniyi@gmail.com" };
 
-             userService.Create(newUser1);
+            // Fetch users that meet some search criteria
+            newUser1.FirstName = "Babatope";
+            newUser2.LastName = "Ayomide";
 
 
-            // Fetch songs that meet some search criteria
-            //List<Song> filteredSongs1 = songService.FetchWithFilter("over", "romantic", null, null);
-            //List<Song> filteredSongs2 = songService.FetchWithFilter("Ess", "R", "Lagos", "Kid");
-
-            // Set the id of song to be updated
-            //Guid idOfSongToUpdate1 = new Guid("05e4b13c-1fe2-4ef6-aa68-08d96238e7ab"); //Non - existing id
-            //Guid idOfSongToUpdate2 = new Guid("05e4b13c-1fe2-4ef6-aa68-08d96238e7ac"); //existing id
-
-            // Create a song object containing new info for the update
-            //Song songWithNewInfo = new Song()
-            //{
-            //    Genre = "Rap/Hip-hop",
-            //    ReleaseDate = new DateTime(2013, 3, 31)
-            //};
-
-            // Call the update mehod to make deseired update
-            //songService.Update(idOfSongToUpdate1, songWithNewInfo);        
-            //songService.Update(idOfSongToUpdate2, songWithNewInfo);
-
-            //Set the id of song to be deleted
-            //Guid idOfSongToDelete1 = new Guid("05e4b13c-1fe2-4ef6-aa98-08d96238e7ab"); // Non-existing id
-            //Guid idOfSongToDelete2 = new Guid("d528422f-54eb-407c-b8c6-08d962e9146b"); // Existing id
-
-            ////Call the Delete method to perform desired deletion
-            //songService.Delete(idOfSongToDelete1);
-            //songService.Delete(idOfSongToDelete2);
+            var filteredUser = userService.fetchWithFilter(newUser1);
+            var filteredUser2 = userService.fetchWithFilter(newUser2);
 
             // Fetch all users after performing action
             availableUser = userService.FetchAll();
-            printer(availableUser);
+            printer(filteredUser);
+            printer(filteredUser2);
 
         }
 
