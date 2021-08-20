@@ -9,18 +9,17 @@ namespace TheBulbTunes
     {
         static void Main(string[] args)
         {
-            SongService songService = new SongService();
-                        
-            // Fetch all songs before update
-            List<Song> availableSongs =  songService.FetchAll();
-            printer(availableSongs);
+            UserService userService = new UserService();
 
-            // Create a number of songs
-            //songService.Create("All Over", "Tiwa Savage", "Sugarcane", "", "Afro-pop, Romantic", new DateTime(2017, 5, 22));
-            //songService.Create("Nobody's Business", "Rihanna", "Unapologetic", "Chris Brown", "R&B", new DateTime(2012, 1, 1));
-            //songService.Create("Get Down On It", "Kool & The Gang", "Something Special", "", "Funk", new DateTime(1981, 11, 24));
-            //songService.Create("The Monster", "Eminem", "Marshall Matters", "Rihanna", "R&B/Rap", new DateTime(2013, 1, 1));
-            //songService.Create("Essence", "Wizkid", "Made In Lagos", "Tems", "R&B", new DateTime(2020, 10, 30));
+            // Fetch all songs before performing action
+            List<User> availableUser = userService.FetchAll();
+            printer(availableUser);
+
+            User newUser1 = new User(); //{ FirstName = "Babatope", LastName = "Ajayi", EmailAddress = "ajayi122@gmail.com" };
+            //User newUser2 = new User() { FirstName = "Olaniyi", LastName = "Ayomide", EmailAddress = "olaniyi@gmail.com" };
+
+             userService.Create(newUser1);
+
 
             // Fetch songs that meet some search criteria
             //List<Song> filteredSongs1 = songService.FetchWithFilter("over", "romantic", null, null);
@@ -42,27 +41,27 @@ namespace TheBulbTunes
             //songService.Update(idOfSongToUpdate2, songWithNewInfo);
 
             //Set the id of song to be deleted
-            Guid idOfSongToDelete1 = new Guid("05e4b13c-1fe2-4ef6-aa98-08d96238e7ab"); // Non-existing id
-            Guid idOfSongToDelete2 = new Guid("d528422f-54eb-407c-b8c6-08d962e9146b"); // Existing id
+            //Guid idOfSongToDelete1 = new Guid("05e4b13c-1fe2-4ef6-aa98-08d96238e7ab"); // Non-existing id
+            //Guid idOfSongToDelete2 = new Guid("d528422f-54eb-407c-b8c6-08d962e9146b"); // Existing id
 
-            //Call the Delete method to perform desired deletion
-            songService.Delete(idOfSongToDelete1);
-            songService.Delete(idOfSongToDelete2);
+            ////Call the Delete method to perform desired deletion
+            //songService.Delete(idOfSongToDelete1);
+            //songService.Delete(idOfSongToDelete2);
 
-            // Fetch all songs after delete
-            availableSongs = songService.FetchAll();
-            printer(availableSongs);
-            
+            // Fetch all users after performing action
+            availableUser = userService.FetchAll();
+            printer(availableUser);
+
         }
 
-        public static void printer(List<Song> availableSongs)
+        public static void printer(List<User> availableUsers)
         {
             Console.WriteLine("\n\nCURRENTLY AVAILABLE SONGS:\n");
             Console.Write("Title\t\tArtist\t\tAlbum");
-            foreach (Song song in availableSongs)
+            foreach (User user in availableUsers)
             {
                 Console.WriteLine();
-                Console.Write($"{song.Title}\t{song.Artist}\t{song.Album}\t{song.Genre}\t{song.ReleaseDate}");
+                Console.Write($"{user.UserId}\t{user.FirstName}\t{user.LastName}\t{user.EmailAddress}");
             }
         }
     }
