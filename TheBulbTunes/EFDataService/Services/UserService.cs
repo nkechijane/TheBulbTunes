@@ -86,6 +86,26 @@ namespace TheBulbTunes.EFDataService.Services
             _context.SaveChanges();
         }
 
+        public void Delete(Guid id)
+        {
+            //Check if a user with the supplied id exists
+            User userToDelete = FetchAll()
+                .Where(u => u.UserId == id)
+                .FirstOrDefault();
+
+            if (userToDelete == null)
+            {
+                Console.WriteLine($"Invalid operation! No match found for the id you supplied."); ;
+                return;
+            }
+
+            // A matching user was found. Perform the requested deletion
+            _context.Users.Remove(userToDelete);
+
+            _context.SaveChanges();
+
+        }
+
 
 
 

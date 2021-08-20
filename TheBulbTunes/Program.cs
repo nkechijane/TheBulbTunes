@@ -32,10 +32,14 @@ namespace TheBulbTunes
             Guid idOfUserToUpdate2 = new Guid("62023d27-a4fe-4728-d1fa-08d963ecb097"); //existing id
 
             User userWithNewInfo = new User(){ FirstName = "Tinuade"};
-           
+
             // Call the update mehod to make deseired update
-            userService.Update(idOfUserToUpdate1, userWithNewInfo);
-            userService.Update(idOfUserToUpdate2, userWithNewInfo);
+            //userService.Update(idOfUserToUpdate1, userWithNewInfo);
+            //userService.Update(idOfUserToUpdate2, userWithNewInfo);
+
+            Guid idOfUserToDelete1 = new Guid("62023d27-a4fe-4728-d1fa-08d963ecb097"); //existing id
+            userService.Delete(idOfUserToDelete1);
+
 
             // Fetch all users after performing action
             availableUser = userService.FetchAll();
@@ -52,5 +56,6 @@ namespace TheBulbTunes
                 Console.Write($"{user.UserId}\t{user.FirstName}\t{user.LastName}\t{user.EmailAddress}");
             }
         }
+                
     }
 }
