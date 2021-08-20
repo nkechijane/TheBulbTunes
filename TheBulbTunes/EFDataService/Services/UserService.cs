@@ -66,6 +66,29 @@ namespace TheBulbTunes.EFDataService.Services
             return users.Where(s => s.EmailAddress.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
+        //Update User
+        public void Update(Guid id, User userWithNewInfo)
+        {
+            //Check if a song with the supplied texts exist
+            User userToUpdate = FetchAll()
+                .Where(u => u.UserId == id)
+                .FirstOrDefault();
+            if (userToUpdate == null)
+            {
+                Console.WriteLine($"Invalid operation! No match was found for the id you supplied.");
+                return;
+            }
+
+            // A matching user was found. Perform the requested update
+            if (userWithNewInfo.FirstName != null) userToUpdate.FirstName = userWithNewInfo.FirstName;
+            if (userWithNewInfo.LastName != null) userToUpdate.LastName = userWithNewInfo.LastName;
+            if (userWithNewInfo.EmailAddress != null) userToUpdate.EmailAddress = userWithNewInfo.EmailAddress;
+            _context.SaveChanges();
+        }
+
+
+
+
 
     }
 }
