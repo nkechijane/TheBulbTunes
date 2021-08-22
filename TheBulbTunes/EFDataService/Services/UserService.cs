@@ -32,7 +32,8 @@ namespace TheBulbTunes.EFDataService.Services
         //Fetch all Users
         public List<User> FetchAll()
         {
-            return _context.Users.ToList();
+            _users =  _context.Users.ToList();
+            return _users;
         }
 
         public List<User> fetchWithFilter(User userData)

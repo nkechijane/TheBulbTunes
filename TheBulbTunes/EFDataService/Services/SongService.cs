@@ -78,7 +78,7 @@ namespace TheBulbTunes.EFDataService.Services
         //update Song
         public void Update(Guid id, Song songWithNewInfo)
         {
-            //Check if a song with the dupplied id exists
+            //Check if a song with the supplied id exists
             Song songToUpdate = FetchAll()
                 .Where(s => s.SongId == id)
                 .FirstOrDefault();
